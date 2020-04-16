@@ -1,0 +1,67 @@
+---
+title: "3700 Project"
+author: "Kelly Money"
+date: "4/16/2020"
+output: flexdashboard::flex_dashboard:
+    orientation: rows
+    social: menu
+    source_code: embed
+    vertical_layout: fill
+    theme: flatly
+---
+
+.chart-title {  /* chart_title  */
+   font-size: 30px;
+   font-family: Algerian;
+
+
+```{r}
+
+
+```
+
+
+```{r setup, include=FALSE}
+#load packages
+library(flexdashboard)
+library(coronavirus) 
+library(tidyr)
+library(DT)
+library(dplyr)
+library(knitr)
+library(plotly)
+#library(testthat)
+library(devtools)
+library(remotes)
+library(leaflet)
+library(leafpop)
+library(purrr)
+library(shinythemes)
+library(xaringan)
+
+
+
+```
+
+```{r, include=FALSE}
+#load 'coronavirus' package (if not already above)
+devtools::install_github("covid19r/coronavirus", force = TRUE)
+
+
+
+
+
+```
+
+
+```{r }
+
+```
+
+
+
+```{r pressure, echo=FALSE}
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

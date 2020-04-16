@@ -1,0 +1,107 @@
+---
+title: "Covid-19 "
+output: html_notebook
+---
+
+
+Project Outline:
+
+1. Clean data
+2. Get Google API in order to create Map for COVID-19 cases
+3. Create animated map based on date-time and location
+4. Use text mining for specific types of symptoms
+
+
+Find, install, include packages that will create maps
+```{r, include=TRUE}
+
+library(ggplot2)
+library(ggmap)
+library(ggsn) 
+library(dplyr) 
+library(lubridate) 
+library(sf) 
+library(spData) 
+library(tmap) 
+library(leaflet) 
+library(mapview) 
+library(animation) 
+library(gganimate)
+library(ggthemes) 
+library(gifski) 
+library(av)
+
+
+```
+
+
+
+I just would like to note that I downloaded these datasets a few weeks ago, so they are out of date with current data. Some of the data was in desperate need of cleaning, so I spent some time putting the dates in the correct format and finding longitude and latitude for the city/state/country. I will be using the 'cov' dataset primarily for text mining and the 'covClean' dataset for creating maps and other analyses. 
+
+Load datasets: 
+```{r}
+cov <- read.csv("../3700_Project/Covid_19_Questions/COVID19_line_list_data.csv")
+#lat/long data
+covClean <- read.csv("../3700_Project/Covid_19_Questions/covid_19_clean_complete.csv")
+```
+
+
+Clean up dates for the 'reporting.date' and 'Dates' columns
+```{r, include=TRUE}
+
+from = levels(cov$reporting.date)
+to=c("02/01/2020","02/02/2020","02/03/2020","02/04/2020","02/05/2020","02/06/2020","02/07/2020",
+     "02/08/2020","02/09/2020","02/10/2020","02/11/2020","02/12/2020","01/13/2020","01/15/2020","01/17/2020","01/20/2020","01/21/2020",
+    "01/22/2020","01/23/2020","01/24/2020","01/25/2020","01/26/2020","01/27/2020","01/28/2020","01/29/2020","01/30/2020","01/31/2020",
+    "02/13/2020","02/14/2020","02/15/2020","02/16/2020","02/17/2020","02/18/2020","02/19/2020","02/20/2020","02/21/2020","02/22/2020",
+    "02/23/2020","02/24/2020","02/25/2020","02/26/2020","02/27/2020","02/28/2020")
+
+
+reportingdatenew <- as.character(plyr::mapvalues(cov$reporting.date,from=from,to=to))
+
+reportingdatenew <- as.POSIXct(reportingdatenew,format = '%m/%d/%Y')
+
+cov$reporting.date <- reportingdatenew
+
+#fix dates for covCLean
+from = levels(covClean$Date)
+to = c("1/22/2020","1/23/2020","1/24/2020","1/25/2020","1/26/2020","1/27/2020","1/28/2020","1/29/2020","1/30/2020","1/31/2020","2/1/2020",
+       "2/10/2020","2/11/2020","2/12/2020","2/13/2020","2/14/2020","2/15/2020","2/16/2020","2/17/2020","2/18/2020","2/19/2020","2/2/2020",
+       "2/20/2020","2/21/2020","2/22/2020","2/23/2020","2/24/2020","2/25/2020","2/26/2020","2/27/2020","2/28/2020","2/29/2020","2/3/2020",
+       "2/4/2020","2/5/2020","2/6/2020","2/7/2020","2/8/2020","2/9/2020","3/1/2020","3/10/2020","3/11/2020","3/12/2020","3/13/2020",
+       "3/14/2020","3/15/2020","3/16/2020","3/17/2020","3/18/2020","3/19/2020","3/2/2020","3/20/2020","3/3/2020","3/4/2020","3/5/2020",
+       "3/6/2020","3/7/2020","3/8/2020","3/9/2020"
+)
+
+reportingdatenew <- as.character(plyr::mapvalues(covClean$Date, from=from, to=to))
+
+reportingdatenew <- as.POSIXct(reportingdatenew, format = '%m/%d/%Y')
+
+covClean$Date <- reportingdatenew
+
+
+```
+
+ 
+
+```{r}
+```
+
+
+Create text mining for symptoms
+```{r}
+```
+
+create date-time gif maps with data. 
+```{r}
+```
+
+
+```{r}
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
