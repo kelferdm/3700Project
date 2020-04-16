@@ -7,7 +7,7 @@ output: flexdashboard::flex_dashboard:
     social: menu
     source_code: embed
     vertical_layout: fill
-    theme: flatly
+    theme: solar
 ---
 
 .chart-title {  /* chart_title  */
@@ -30,7 +30,7 @@ library(DT)
 library(dplyr)
 library(knitr)
 library(plotly)
-#library(testthat)
+library(testthat)
 library(devtools)
 library(remotes)
 library(leaflet)
@@ -38,13 +38,14 @@ library(leafpop)
 library(purrr)
 library(shinythemes)
 library(xaringan)
+library(gganimate)
 
 
 
 ```
 
 ```{r, include=FALSE}
-#load 'coronavirus' package (if not already above)
+#load 'coronavirus' package 
 devtools::install_github("covid19r/coronavirus", force = TRUE)
 
 
@@ -54,7 +55,15 @@ devtools::install_github("covid19r/coronavirus", force = TRUE)
 ```
 
 
-```{r }
+```{r, include=FALSE}
+#In order to present the most updated version of the data, check the original data for updates
+coronavirus::update_datasets(silence=TRUE)
+data("coronavirus")
+
+#cool little trick to load function from a package that you don't want to load
+`%>%` <- magrittr::`%>%`
+
+
 
 ```
 
